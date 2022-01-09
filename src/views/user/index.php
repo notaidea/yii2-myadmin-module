@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{assign}',
                 'buttons' => [
                     'assign' => function($url, $model, $index) {
-                        return Html::a("分配权限", $url);
+                        return Html::a("分配角色", $url);
                     }
                 ]
             ],
