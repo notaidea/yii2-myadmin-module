@@ -21,7 +21,7 @@ class ArticlesController extends Controller
 //                    //==================================================
 //                    //不指定actions的话，就对所有action生效
 //                    //否则只对actions中的生效
-//                    'actions' => ['index', 'create'],
+//                    //'actions' => ['index', 'create'],
 //
 //                    //==================================================
 //                    //roles和permissions二选一即可（优先使用permissions）
