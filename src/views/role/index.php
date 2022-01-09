@@ -9,7 +9,7 @@ use yii\grid\GridView;
 $this->title = 'Role';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="role-index">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
@@ -28,6 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             //============================== 直接显示字段 ==============================
             'name',
             'description',
+            'ruleName',
+            'data',
 
             //============================== 格式化字段 ==============================
             //'created_at',

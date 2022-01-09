@@ -11,9 +11,9 @@ class RoleForm extends Model
 
     public $description;
 
-//    public $rule_name;
+    public $ruleName;
 
-//    public $data;
+    public $data;
 
     public function rules()
     {
@@ -27,11 +27,39 @@ class RoleForm extends Model
             ["description", "trim", ],
             ["description", "required", ],
 
-//            ["rule_name", "string", ],
-//            ["rule_name", "trim", ],
+            ["data", "string", ],
+            ["data", "trim", ],
+            ["data", "checkJson", "skipOnEmpty" => true, ],
 
-//            ["data", "string", ],
-//            ["data", "trim", ],
+            ["ruleName", "string", ],
+            ["ruleName", "trim", ],
+            ["ruleName", "default", "value" => null, ],
+            ["ruleName", "checkClass", "skipOnEmpty" => true, 'params' => [
+                'auth' => Yii::$app->authManager,
+            ]],
         ];
+    }
+
+    public function checkJson($fieldName, $params, $validator, $value)
+    {
+        if ($value == "" || $value == null) {
+            return;
+        }
+
+        $isJson = json_decode($value);
+        if ($isJson === null) {
+            $this->addError($fieldName, "必须输入json格式的数据");
+            return;
+        }
+    }
+
+    public function checkClass($fieldName, $params, $validator, $value)
+    {
+        $rule = $params["auth"]->getRule($value);
+
+        if (!$rule) {
+            $this->addError($fieldName, "Rule Class does not exist.Pleas add rule first.");
+            return;
+        }
     }
 }

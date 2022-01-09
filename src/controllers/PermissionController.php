@@ -64,6 +64,8 @@ class PermissionController extends Controller
             $auth = Yii::$app->authManager;
             $permission = $auth->createPermission($model->name);
             $permission->description = $model->description;
+            $permission->ruleName = $model->ruleName;
+            $permission->data = $model->data;
             $auth->add($permission);
 
             return $this->redirect(["view", "id" => $model->name]);
@@ -91,6 +93,8 @@ class PermissionController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $permission = $auth->createPermission($model->name);
             $permission->description = $model->description;
+            $permission->ruleName = $model->ruleName;
+            $permission->data = $model->data;
             $auth->update($id, $permission);
 
             return $this->redirect(["view", "id" => $model->name]);

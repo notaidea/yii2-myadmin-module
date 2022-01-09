@@ -4,20 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
+/* @var $model yii\Rbac\Rule */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="permission-form">
+<div class="rule-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput() ?>
-
-    <?= $form->field($model, 'description')->textInput() ?>
-
-    <?= $form->field($model, 'ruleName')->textInput()->hint("用命名空间。") ?>
-
-    <?= $form->field($model, 'data')->textarea(["rows" => 5, ])->hint("请输入json格式的数据。") ?>
+    <?= $form->field($model, 'name')->textInput()->hint("用命名空间。") ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

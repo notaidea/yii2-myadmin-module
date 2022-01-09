@@ -9,7 +9,7 @@ $this->title = 'Update Role';
 $this->params['breadcrumbs'][] = ['label' => 'Role', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-create">
+<div class="role-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

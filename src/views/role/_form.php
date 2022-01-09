@@ -8,13 +8,17 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="user-form">
+<div class="role-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'name')->textInput() ?>
 
     <?= $form->field($model, 'description')->textInput() ?>
+
+    <?= $form->field($model, 'ruleName')->textInput()->hint("用命名空间。") ?>
+
+    <?= $form->field($model, 'data')->textarea(["rows" => 5, ])->hint("请输入json格式的数据。") ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

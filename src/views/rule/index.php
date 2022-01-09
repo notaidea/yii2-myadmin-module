@@ -4,16 +4,16 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $dataProvider yii\data\ArrayDataProvider */
 
-$this->title = 'Permission';
+$this->title = 'Rule';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="permission-index">
+<div class="rule-index">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Permission', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Rule', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -27,9 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //============================== 直接显示字段 ==============================
             'name',
-            'description',
-            'ruleName',
-            'data',
+            //'data',
 
             //============================== 格式化字段 ==============================
             //'created_at',

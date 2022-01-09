@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model yii\Rbac\Permission */
+/* @var $model yii\Rbac\Rule */
 
-$this->title = 'Create Permission';
-$this->params['breadcrumbs'][] = ['label' => 'Permission', 'url' => ['index']];
+$this->title = 'Update Rule';
+$this->params['breadcrumbs'][] = ['label' => 'Rule', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="permission-create">
+<div class="rule-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

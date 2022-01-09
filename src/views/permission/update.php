@@ -9,7 +9,7 @@ $this->title = 'Update Permission';
 $this->params['breadcrumbs'][] = ['label' => 'Permission', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-create">
+<div class="permission-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

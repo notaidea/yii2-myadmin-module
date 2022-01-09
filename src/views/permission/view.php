@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Permission', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="user-view">
+<div class="permission-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -31,6 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'name',
             'description',
+            'ruleName',
+            'data',
         ],
     ]) ?>
 

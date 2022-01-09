@@ -8,9 +8,9 @@ use yii\filters\VerbFilter;
 use yii\data\ArrayDataProvider;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
-use \myadmin\models\RoleForm;
+use \myadmin\models\RuleForm;
 
-class RoleController extends Controller
+class RuleController extends Controller
 {
     public function behaviors()
     {
@@ -31,7 +31,7 @@ class RoleController extends Controller
         /* @var $dataProvider ArrayDataProvider */
         $dataProvider = Yii::createObject([
             'class' => ArrayDataProvider::class,
-            'allModels' => $auth->getRoles(),
+            'allModels' => $auth->getRules(),
         ]);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class RoleController extends Controller
     public function actionView($id)
     {
         $auth = Yii::$app->authManager;
-        $model = $auth->getRole($id);
+        $model = $auth->getRule($id);
 
         if (!$model) {
             throw new NotFoundHttpException();
@@ -55,21 +55,18 @@ class RoleController extends Controller
 
     public function actionCreate()
     {
-        /* @var $model RoleForm */
+        /* @var $model RuleForm */
         $model = Yii::createObject([
-            'class' => RoleForm::class,
+            'class' => RuleForm::class,
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $auth = Yii::$app->authManager;
-            $role = $auth->createRole($model->name);
-            $role->description = $model->description;
-            $role->ruleName = $model->ruleName;
-            $role->data = $model->data;
+            $rule = Yii::createObject($model->name);
+            $rule->name = $model->name;
+            $res = $auth->add($rule);
 
-            $res = $auth->add($role);
-
-            return $this->redirect(['view', 'id' => $role->name]);
+            return $this->redirect(['view', 'id' => $rule->name]);
         }
 
         return $this->render('create', [
@@ -81,13 +78,13 @@ class RoleController extends Controller
     {
         $auth = Yii::$app->authManager;
 
-        /* @var $model RoleForm */
+        /* @var $model RuleForm */
         $model = Yii::createObject([
-            "class" => RoleForm::class,
+            "class" => RuleForm::class,
         ]);
 
         if (Yii::$app->request->isGet) {
-            $row = $auth->getRole($id);
+            $row = $auth->getRule($id);
             $model->load(ArrayHelper::toArray($row), "");
         }
 
@@ -95,12 +92,10 @@ class RoleController extends Controller
             $auth = Yii::$app->authManager;
 
             //更新，先创建，再update
-            $role = $auth->createRole($model->name);
-            $role->description = $model->description;
-            $role->ruleName = $model->ruleName;
-            $role->data = $model->data;
+            $rule = Yii::createObject($model->name);
+            $rule->name = $model->name;
 
-            $res = $auth->update($id, $role);
+            $res = $auth->update($id, $rule);
 
             return $this->redirect(['view', 'id' => $model->name]);
         }
@@ -113,8 +108,8 @@ class RoleController extends Controller
     public function actionDelete($id)
     {
         $auth = Yii::$app->authManager;
-        $role = $auth->getRole($id);
-        $auth->remove($role);
+        $rule = $auth->getRule($id);
+        $auth->remove($rule);
 
         return $this->redirect(['index']);
     }
