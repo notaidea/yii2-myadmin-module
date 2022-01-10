@@ -12,6 +12,14 @@ console/config/main.php - aliases
     '@myadmin' => "path_to_the_package",
 
 #config
+common/config/main.php - components
+
+    'authManager' => [
+        
+        'class' => 'yii\rbac\DbManager',
+        
+    ]
+
 backend/config/main.php - modules
 
     'myadmin' => [
@@ -20,13 +28,20 @@ backend/config/main.php - modules
         
     ],
 
-common/config/main.php - components
+backend/config/main.php
 
-    'authManager' => [
-        
-        'class' => 'yii\rbac\DbManager',
-        
-    ]
+    'as access' => [
+        "class" => \myadmin\filters\AccessControl::class,
+        "adminIds" => [
+            1,
+        ],
+        "allowActions" => [
+            'debug/default/index',
+            'debug/default/view',
+            '/site/index',
+            '/site/login',
+        ],
+    ],
 
 #Migrate
 php yii migrate --migrationPath=@yii/rbac/migrations
